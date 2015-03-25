@@ -62,9 +62,26 @@ void insert_sort(int arr[], int n)
 	}
 }
 //希尔排序
-void ShellSort(int *a, int len)
+void shellsort1(int a[], int n)
 {
-	
+	int i, j, gap;
+
+	for (gap = n / 2; gap > 0; gap /= 2) //步长
+		for (i = 0; i < gap; i++)        //直接插入排序
+		{
+			for (j = i + gap; j < n; j += gap) 
+				if (a[j] < a[j - gap])
+				{
+					int temp = a[j];
+					int k = j - gap;
+					while (k >= 0 && a[k] > temp)
+					{
+						a[k + gap] = a[k];
+						k -= gap;
+					}
+					a[k + gap] = temp;
+				}
+		}
 }
 int _tmain(int argc, _TCHAR* argv[])
 {
